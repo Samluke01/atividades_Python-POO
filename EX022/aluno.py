@@ -5,6 +5,7 @@ class Pessoa(ABC):
     def __init__(self,nome,nascimento):
         self._nome = nome
         self._nascimento = nascimento
+        self.nascimento = nascimento
         
     @property
     def nascimento(self):
@@ -12,11 +13,11 @@ class Pessoa(ABC):
     
     @nascimento.setter
     def nascimento(self, nascimento):
-        if nascimento < dt.today().year - 100 or nascimento > dt.today().year:
-            raise ValueError(f'Ano {nascimento} invalido')
-        else:
+        if dt.today().year - 100 < nascimento < dt.today().year:
             self._nascimento = nascimento
-    
+        else:
+            raise ValueError(f'Ano {nascimento} invalido')
+        
     @property   
     def idade(self):
         return dt.today().year - self.nascimento
