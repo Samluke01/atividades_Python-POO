@@ -45,7 +45,10 @@ class Aluno(Pessoa):
             self._curso = curso 
         
     def add_curso(self,curso):
-        if 3 <= len(curso) <= 4:
-            self.cursos_oficiais.append(curso)
+        if curso not in self.cursos_oficiais:
+            if 3 <= len(curso) <= 4:
+                self.cursos_oficiais.append(curso)
+            else:
+                raise PermissionError('A Sigla do curso deve ter de 3 a 4 Caracteres!')
         else:
-            raise PermissionError('A Sigla do curso deve ter de 3 a 4 Caracteres!')
+            raise PermissionError('O Curso digitado ja esta na Lista!')
