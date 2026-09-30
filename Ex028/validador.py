@@ -26,9 +26,7 @@ class Usuario(Validador):
         
 class Senha(Validador):
     def validador(self,msg:str):
-        if re.search(r"\s", msg):
-            return 'Não'
-        if 0<len(msg)<=8 and re.search('[0-9]',msg) and len(re.findall('[A-Z]', msg)) > 0 and re.findall('[#,$,*,!,@]', msg):
+        if re.fullmatch('^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@!#$%&?*]).{8,}$',msg):
             return 'Sim'
         else:
             return 'Não'
